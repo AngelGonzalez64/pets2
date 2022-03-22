@@ -6,7 +6,7 @@ const middleware = {
         const bearerHeader = req.headers["authorization"];
         if(typeof bearerHeader !== 'undefined')
         {
-            const bearer = bearerHeader.split("");
+            const bearer = bearerHeader.split(" ");
             const bearerToken = bearer[1];
             jwt.verify(bearerToken,db.secret_key,(err, data) => {
                 if(err)
