@@ -1,6 +1,20 @@
 let controller = {};
 let format = require("../format").format;
 
+controller.getLogin = (req, res) =>{
+    const adoption ={
+        id : req.body.id,
+        time : new Date().getTime()
+    };
+    const token = jwt.sign({adoption}, db.secret_key);
+    res.status(200);
+    format.success = true;
+    format.code = 200;
+    format.message = "Token";
+    format.data = token;
+    res.json(format);
+};
+
 controller.getAdoption = (req, res) =>
 {
     const sql = "SELECT * FROM adoptions INNER JOIN pets ON pets.id = adoptions.pet_id INNER JOIN users ON users.id = adoptions.user_id  WHERE adoptions.id = ?";
