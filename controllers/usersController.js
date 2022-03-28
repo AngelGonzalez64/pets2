@@ -9,11 +9,13 @@ controller.getLogin = (req,res) => {
         id : req.body.id,
         time : new Date().getTime()
     };
-    const token = jwt.sign({user},db.secret_key,{expiresIn:'5m'});
+    const token = jwt.sign({user}, db.secret_key,{expiresIn:'5m'});
     res.status(200);
     format.success = true;
     format.code = 200;
-    format.message = "Tooken";
+    format.message = "Token";
+    format.data = token;
+    res.json(format);
 }
 
 controller.getUser = (req, res) =>
